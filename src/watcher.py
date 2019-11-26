@@ -1,8 +1,6 @@
-import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from plyer import notification
-import argparse
 import git
 from git import Repo
 import os
@@ -15,8 +13,8 @@ branch = ""
 old_commit_summary = None
 count = 0
 commitData = ""
-                                     
-
+                 
+ 
 def get_commits():
     global commitData
     COMMITS_TO_PRINT = 1
@@ -54,7 +52,6 @@ def sendToNotify():
             notify()
             old_commit_summary = commitData[0]
     count += 1
-    print(count)
                   
 class Watchdog(PatternMatchingEventHandler, Observer):           
     global repo_path 
@@ -103,8 +100,6 @@ class strt():
     def set_repo_path(self):
         global count
         global repo_path
-        print(repo_path)
-
         global commitData
         try:
             self.watchdog.stop()
