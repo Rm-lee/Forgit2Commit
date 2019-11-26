@@ -11,5 +11,13 @@ Every 5 modifications to the directory, ie a files are modified or deleted, a na
 
 ![notification](https://user-images.githubusercontent.com/43976537/69674505-9a541180-106a-11ea-9fad-32d17c1542a4.png)
 
-![watching](https://user-images.githubusercontent.com/43976537/69675190-14d16100-106c-11ea-806f-17fca84e3e79.png)
+![watching](https://user-images.githubusercontent.com/43976537/69675190-14d16100-106c-11ea-806f-17fca84e3e79.png)       
+
+##Linux commandline 
+Modules required plyer, watchdog and gitpython
+
+watchergui.py is the entry point.
+
+
+work in progress
 
