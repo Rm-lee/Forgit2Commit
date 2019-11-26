@@ -15,8 +15,11 @@ Every 5 modifications to the directory, ie a files are modified or deleted, a na
 
 ##Linux commandline 
 Modules required plyer, watchdog and gitpython
-
 watchergui.py is the entry point.
+
+![Screenshot from 2019-11-26 17-16-48](https://user-images.githubusercontent.com/43976537/69678004-4cdba280-1072-11ea-82bf-c484766cccac.png)
+
+
 
 
 work in progress
