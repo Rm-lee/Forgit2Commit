@@ -9,22 +9,13 @@ import os
 import threading
 from multiprocessing.dummy import Process
 from watchdog.events import PatternMatchingEventHandler
-if os.name == 'nt':
-    import winreg
- 
-    r = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
-    k = winreg.OpenKey(r, r'SOFTWARE\GitForWindows')
-    install_path = winreg.QueryValueEx(k, 'InstallPath')[0]
-    git_path =  os.path.join(install_path, 'bin/git.exe')
-    assert os.path.exists(git_path), "Git path not found"
-    os.environ['GIT_PYTHON_GIT_EXECUTABLE'] = git_path
 
 repo_path = ""
 branch = ""
 old_commit_summary = None
 count = 0
 commitData = ""
-
+                                     
 
 def get_commits():
     global commitData
@@ -47,15 +38,14 @@ def notify():
         app_icon=os.path.join(os.path.dirname(
             os.path.abspath(__file__)), 'icon.ico')
     )
-
-
+     
+  
 def sendToNotify():
     global old_commit_summary
     global count
     global commitData
     commitData = get_commits()
-    print(count)
-
+                        
     if old_commit_summary != commitData[0] and old_commit_summary != None:
             count = 0
             old_commit_summary = commitData[0]
@@ -64,21 +54,21 @@ def sendToNotify():
             notify()
             old_commit_summary = commitData[0]
     count += 1
-
-
-class Watchdog(PatternMatchingEventHandler, Observer):
-    global repo_path
+                     
+                  
+class Watchdog(PatternMatchingEventHandler, Observer):           
+    global repo_path 
     paused = False 
-    
+                               
+                                        
     def __init__(self, path=repo_path, patterns='*', ignore_patterns=["*git*"], logfunc=print):#
         PatternMatchingEventHandler.__init__(self, patterns, ignore_patterns)
         Observer.__init__(self)
-        self.schedule(self, path=path, recursive=True)
+        self.schedule(self, path=path, recursive=True)     
         self.log = logfunc
-        
     def set_false(self):
         Watchdog.paused = False
-    
+         
     def on_modified(self, event):
         
         timer = threading.Timer(1.0, lambda: Watchdog().set_false())
@@ -87,13 +77,14 @@ class Watchdog(PatternMatchingEventHandler, Observer):
         Watchdog.paused = True    
         if os.path.abspath(repo_path) not in os.path.abspath(event.src_path):
             Watchdog.stop(self)
-
+         
         if not event.is_directory:
             sendToNotify()
         
         timer.start()
         
     def on_created(self, event):
+        
         timer = threading.Timer(1.0, lambda: Watchdog().set_false())
         if Watchdog.paused is True:
             return
@@ -112,6 +103,7 @@ class strt():
     def set_repo_path(self):
         global count
         global repo_path
+        
         global commitData
         try:
             self.watchdog.stop()
