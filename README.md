@@ -2,7 +2,7 @@
 ### Watches designated directory for changes and gives system notifications reminding you to commit referencing specified branch for latest commit summaries.
 
 Just browse for the directory holding your git repo you want to watch for changes, specify the branch you are working in and click watch.
-Every 5 modifications to the directory, ie a files are modified or deleted, a native system pop up notifaction will give you your last commit summary, author and time it was made reminding you might need to commit.
+Every 5 modifications to the directory,E.g. files are modified or deleted, a native system pop up notification will give you your last commit summary, author and time it was made reminding you might need to commit.
 
 ### Windows exe version
 
